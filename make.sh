@@ -45,11 +45,13 @@ fi
 
 echo " Компиляция исходного кода на C++ "
 g++ -I $PathCodeHeader -c -g -Os -march=x86-64 -ffreestanding -Wall -Werror $sourcePath/$mainFileNameCpp -o $buildPath/$mainFileNameObj -m32
+getSize $buildPath $mainFileNameObj
 ls $buildPath
 
 echo
 echo "  = Компиляция исходного кода на ASM = "
 ld -static -T$sourcePath/$NameFileEntryPoint -nostdlib --nmagic -o $buildPath/$NameBootFileELF $buildPath/$mainFileNameObj -m elf_i386
+getSize $buildPath $mainFileNameObj
 ls $buildPath
 
 
