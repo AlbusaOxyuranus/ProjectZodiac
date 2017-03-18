@@ -12,6 +12,7 @@ mainFileNameCpp=$mainFileName.cpp;
 mainFileNameObj=$mainFileName.o;
 NameBootFileIMG="Zodiac.img"
 PathCodeHeader="$currentFolder/header"
+pathLib="/usr/include/"
 echo "================== Начинаем сборку ================== "
 echo 
 echo " * Переменные * "
@@ -44,9 +45,14 @@ else
 fi
 
 echo " Компиляция исходного кода на C++ "
-g++ -I $PathCodeHeader -c -g -Os -march=x86-64 -ffreestanding -Wall -Werror $sourcePath/$mainFileNameCpp -o $buildPath/$mainFileNameObj -m32
+gcc -I $PathCodeHeader -c -Wall -Werror $sourcePath/$mainFileNameCpp -o $buildPath/$mainFileNameObj -m32
 getSize $buildPath $mainFileNameObj
 ls $buildPath
+
+#echo " Компиляция исходного кода на C++ "
+#g++ -I $PathCodeHeader -c -g -Os -march=x86-64 -ffreestanding -Wall -Werror $sourcePath/$mainFileNameCpp -o $buildPath/$mainFileNameObj -m32
+#getSize $buildPath $mainFileNameObj
+#ls $buildPath
 
 echo
 echo "  = Компиляция исходного кода на ASM = "
